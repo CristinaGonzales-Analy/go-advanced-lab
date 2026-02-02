@@ -110,3 +110,22 @@ func TestCompose(t *testing.T) {
 		t.Error("Compose failed")
 	}
 }
+
+func TestSwapValues(t *testing.T) {
+	x, y := SwapValues(1, 2)
+
+	if x != 2 || y != 1 {
+		t.Error("SwapValues failed")
+	}
+}
+
+func TestSwapPointers(t *testing.T) {
+	a := 1
+	b := 2
+
+	SwapPointers(&a, &b)
+
+	if a != 2 || b != 1 {
+		t.Error("SwapPointers failed")
+	}
+}

@@ -158,6 +158,41 @@ func ExploreProcess() {
 	fmt.Println("Other processes cannot access these addresses due to process isolation.")
 }
 
+// Go passes arguments by value, so this only modifies a copy, not the original
+func DoubleValue(x int) {
+	x *= 2
+}
+
+// modifies original because pointer references same memory
+func DoublePointer(x *int) {
+	*x *= 2
+}
+
+func CreateOnStack() int {
+	x := 10
+	// This variable stays on the stack
+	return x
+}
+
+func CreateOnHeap() *int {
+	x := 20
+	// This variable escapes to the heap
+	return &x
+}
+
+func SwapValues(a, b int) (int, int) {
+	return b, a
+}
+
+func SwapPointers(a, b *int) {
+	*a, *b = *b, *a
+}
+
+func AnalyzeEscape() {
+	CreateOnStack()
+	CreateOnHeap()
+}
+
 func main() {
 	fmt.Println("Working...")
 }

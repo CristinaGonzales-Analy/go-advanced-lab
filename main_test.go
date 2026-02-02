@@ -32,3 +32,38 @@ func TestIsPrime(t *testing.T) {
 		})
 	}
 }
+
+func TestMakeCounter(t *testing.T) {
+	c1 := MakeCounter(0)
+	c2 := MakeCounter(0)
+
+	if c1() != 1 {
+		t.Error("Counter should return 1")
+	}
+	if c1() != 2 {
+		t.Error("Counter should return 2")
+	}
+
+	if c2() != 1 {
+		t.Error("Second counter should be independent")
+	}
+}
+
+func TestMakeMultiplier(t *testing.T) {
+	double := MakeMultiplier(2)
+
+	if double(5) != 10 {
+		t.Error("2 * 5 should be 10")
+	}
+}
+
+func TestMakeAccumulator(t *testing.T) {
+	add, sub, get := MakeAccumulator(1)
+
+	add(2)
+	sub(1)
+
+	if get() != 2 {
+		t.Error("Accumulator should equal 2")
+	}
+}

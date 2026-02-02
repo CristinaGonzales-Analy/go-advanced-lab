@@ -194,5 +194,29 @@ func AnalyzeEscape() {
 }
 
 func main() {
-	fmt.Println("Working...")
+	ExploreProcess()
+
+	fmt.Println("\n=== Math Operations ===")
+	fmt.Println(Factorial(5))
+	fmt.Println(IsPrime(17))
+	fmt.Println(Power(2, 8))
+
+	fmt.Println("\n=== Closures ===")
+	counter1 := MakeCounter(0)
+	counter2 := MakeCounter(100)
+	fmt.Println(counter1(), counter1())
+	fmt.Println(counter2())
+
+	fmt.Println("\n=== Higher-Order Functions ===")
+	nums := []int{1, 2, 3, 4, 5}
+	fmt.Println("Squared:", Apply(nums, func(x int) int { return x * x }))
+
+	fmt.Println("\n=== Pointers ===")
+	a, b := 5, 10
+	a, b = SwapValues(a, b)
+	fmt.Println("SwapValues:", a, b)
+
+	x, y := 1, 2
+	SwapPointers(&x, &y)
+	fmt.Println("SwapPointers:", x, y)
 }

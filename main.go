@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"math"
+	"os"
 )
 
 func Factorial(n int) (int, error) {
@@ -128,6 +129,33 @@ func Compose(f func(int) int, g func(int) int) func(int) int {
 	return func(x int) int {
 		return f(g(x))
 	}
+}
+
+func ExploreProcess() {
+	fmt.Println("=== Process Information ===")
+
+	// A Process ID is a unique number assigned by the operating system
+	// to identify a running program.
+	pid := os.Getpid()
+
+	// Parent process ID is the program that launched this one.
+	ppid := os.Getppid()
+
+	fmt.Println("Current Process ID:", pid)
+	fmt.Println("Parent Process ID:", ppid)
+
+	data := []int{1, 2, 3, 4, 5}
+
+	// The slice header contains a pointer to the underlying array, length, capacity. Also, functions are passed by copying
+	//Element address refers to the actual data items, size of type, points to original array
+
+	fmt.Printf("Slice header address: %p\n", &data)
+	fmt.Printf("First element address: %p\n", &data[0])
+
+	// Process isolation is important because each process has protected memory,
+	// which prevents one running program from directly reading or modifying
+	// another program's memory addresses
+	fmt.Println("Other processes cannot access these addresses due to process isolation.")
 }
 
 func main() {

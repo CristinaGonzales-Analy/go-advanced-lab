@@ -2,6 +2,36 @@ package main
 
 import "testing"
 
+func TestFactorial(t *testing.T) {
+	tests := []struct {
+		name    string
+		input   int
+		want    int
+		wantErr bool
+	}{
+		{"0!", 0, 1, false},
+		{"1!", 1, 1, false},
+		{"5!", 5, 120, false},
+		{"3!", 3, 6, false},
+		{"10!", 10, 3628800, false},
+		{"negative", -1, 0, true},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := Factorial(tt.input)
+
+			if (err != nil) != tt.wantErr {
+				t.Errorf("Factorial() error = %v wantErr %v", err, tt.wantErr)
+			}
+
+			if got != tt.want {
+				t.Errorf("Factorial() = %v want %v", got, tt.want)
+			}
+		})
+	}
+}
+
 func TestIsPrime(t *testing.T) {
 	tests := []struct {
 		name    string
@@ -28,6 +58,36 @@ func TestIsPrime(t *testing.T) {
 
 			if got != tt.want {
 				t.Errorf("IsPrime() = %v want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestPower(t *testing.T) {
+	tests := []struct {
+		name     string
+		base     int
+		exponent int
+		want     int
+		wantErr  bool
+	}{
+		{"2^0", 2, 0, 1, false},
+		{"2^3", 2, 3, 8, false},
+		{"5^2", 5, 2, 25, false},
+		{"0^5", 0, 5, 0, false},
+		{"negative exp", 2, -1, 0, true},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := Power(tt.base, tt.exponent)
+
+			if (err != nil) != tt.wantErr {
+				t.Errorf("Power() error = %v wantErr %v", err, tt.wantErr)
+			}
+
+			if got != tt.want {
+				t.Errorf("Power() = %v want %v", got, tt.want)
 			}
 		})
 	}

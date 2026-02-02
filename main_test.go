@@ -14,7 +14,7 @@ func TestFactorial(t *testing.T) {
 		{"5!", 5, 120, false},
 		{"3!", 3, 6, false},
 		{"10!", 10, 3628800, false},
-		{"negative", -1, 0, true},
+		{"-1", -1, 0, true},
 	}
 
 	for _, tt := range tests {
